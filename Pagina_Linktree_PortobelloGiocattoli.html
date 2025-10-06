@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Autobenessere di Marco Prantl - Link Page</title>
+  <title>Portobello Giocattoli - Link Page</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: url('sfondo.jpg') no-repeat center center fixed; /* Immagine di sfondo */
-      background-size: cover; /* L'immagine copre tutto lo schermo */
+      background: linear-gradient(to bottom, #ffffff, #fecf07); /* Sfumatura giallo → bianco */
+      background-attachment: fixed;
       text-align: center;
       padding: 2rem;
-      color: white;
+      color: black; /* Testo leggibile sullo sfondo chiaro */
     }
     .logo {
       max-width: 300px; /* Logo più grande */
@@ -49,10 +49,16 @@
 </head>
 <body>
   <!-- Logo -->
-  <img src="logo.png" alt="Logo Autobenessere di Marco Prantl" class="logo" />
+  <img src="logo.png" alt="Logo Portobello Giocattoli" class="logo" />
+
+  <!-- Bottone Sito -->
+  <a class="link-button" href="https://portobellogiochi.it/"target="_blank">
+    <img class="icon" src="https://cdn-icons-png.flaticon.com/128/13446/13446270.png" alt="Sito" />
+    Consulta il nostro Sito
+  </a>
 
   <!-- Bottone Google Recensioni -->
-  <a class="link-button" href="https://search.google.com/local/writereview?placeid=ChIJ2dNQKRhBPxMR7WqxJHsBf20" target="_blank" rel="noopener noreferrer">
+  <a class="link-button" href="https://search.google.com/local/writereview?placeid=ChIJvTMt9FhBPxMRfKQrVIONnac" target="_blank" rel="noopener noreferrer">
     <img class="icon" src="https://cdn-icons-png.flaticon.com/512/300/300221.png" alt="Google" />
     Lasciaci una Recensione
   </a>
@@ -63,27 +69,57 @@
     Seguici su Instagram
   </div>
 
-  <!-- Bottone Facebook (link diretto al profilo web) -->
-  <a class="link-button" href="https://www.facebook.com/ufficiosrl.soluzione" target="_blank">
+  <!-- Bottone Facebook -->
+  <a class="link-button" href="https://www.facebook.com/portobello.giochiprimainfanzia" target="_blank">
     <img class="icon" src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" />
     Seguici su Facebook
   </a>
 
-  <script>
-    document.getElementById('instagramButton').addEventListener('click', function () {
-      openAppOrWeb('instagram://user?username=autobenessere_di_marco_prantl', 'https://www.instagram.com/autobenessere_di_marco_prantl/');
-    });
+  <!-- Bottone TikTok -->
+  <div class="link-button" id="tiktokButton" role="button" tabindex="0">
+    <img class="icon" src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok" />
+    Seguici su TikTok
+  </div>
 
-    // Funzione generica per tentare apertura app + fallback web
+  <!-- Bottone Contattaci -->
+  <a class="link-button" href="tel:3519146331">
+    <img class="icon phone-icon" src="https://cdn-icons-png.flaticon.com/128/16617/16617786.png" alt="Telefono" />
+    Contattaci
+  </a>
+
+  <script>
     function openAppOrWeb(appUrl, webUrl) {
       const start = Date.now();
       window.location = appUrl;
-      setTimeout(function() {
+      setTimeout(function () {
         if (Date.now() - start < 1500) {
           window.open(webUrl, '_blank');
         }
       }, 1000);
     }
+
+    function addButtonAccessibility(id, appUrl, webUrl) {
+      const el = document.getElementById(id);
+      el.addEventListener('click', () => openAppOrWeb(appUrl, webUrl));
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openAppOrWeb(appUrl, webUrl);
+        }
+      });
+    }
+
+    addButtonAccessibility(
+      'instagramButton',
+      'instagram://user?username=portobello_giocattoli',
+      'https://www.instagram.com/portobello_giocattoli/'
+    );
+
+    addButtonAccessibility(
+      'tiktokButton',
+      'snssdk1233://user/profile/6929609946611532805',
+      'https://www.tiktok.com/@portobello_giocheria'
+    );
   </script>
 </body>
 </html>
